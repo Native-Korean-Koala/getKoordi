@@ -28,6 +28,12 @@ public class SecurityConfig {
                                 .userService(customOAuth2UserService)
                         )
                         .defaultSuccessUrl("/", true) // 프론트 url
+                )
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/auth/discord")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .deleteCookies("JSESSIONID")
                 );
 
         return http.build();
