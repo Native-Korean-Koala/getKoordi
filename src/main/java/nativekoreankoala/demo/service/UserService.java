@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -35,6 +36,10 @@ public class UserService {
                             .build();
                     return userRepository.save(newUser);
                 });
+    }
+
+    public User getUserById(UUID userId) {
+        return userRepository.findById(userId).orElse(null);
     }
 
     public User getUserByDiscordId(String discordId) {
